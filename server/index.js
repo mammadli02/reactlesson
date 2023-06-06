@@ -8,7 +8,11 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 dotenv.config();
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors())
+const categories_routes=require('./routes/products.routes')
+const product_routes=require('./routes/categories.routes')
+const slide_rourtes=require('./routes/slider.routes')
+
 
 //verify JWT
 const verifyJWT = (req,res,next)=>{
@@ -98,12 +102,23 @@ app.post('/api/login',async(req,res)=>{
 
 //logout
 
+
+
+
+
+
+
+
+
+
 //users - get
 app.get('/api/users',verifyJWT,async(req,res)=>{
     const users = await Users.find();
     res.json({users: users});
 })
-
+app.use('/api/categories', categories_routes)
+app.use('/api/product', product_routes)
+app.use('/api/sliders', slide_rourtes)
 PORT=process.env.PORT
 app.listen(process.env.PORT,()=>{
     console.log(`App listening on PORT: ${process.env.PORT}`);
