@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 //Song Model
 const  ProductsModel= mongoose.model(
-  "Songs",
+  "product",
   new mongoose.Schema({
     name: String,
     price: Number,
